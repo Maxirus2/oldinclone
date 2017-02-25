@@ -1,0 +1,23 @@
+
+<IfModule mod_rewrite.c>
+    Options +FollowSymlinks
+    RewriteEngine On
+    
+    
+  
+	
+    # Explicitly disable rewriting for front controllers
+	RewriteCond %{SERVER_PORT} !^443$ 
+    RewriteRule ^(.*)$ https://ol1.by/$1 [R=301,L]
+    RewriteRule ^app_dev.php - [L]
+    RewriteRule ^app.php - [L]
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+
+    # Change below before deploying to production
+    RewriteRule ^(.*)$ web/app.php [QSA,L]
+    #RewriteRule ^(.*)$ web/app_dev.php [QSA,L]
+
+	
+    
+</IfModule>

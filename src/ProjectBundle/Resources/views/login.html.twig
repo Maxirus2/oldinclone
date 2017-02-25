@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Авторизация</title>
+	<link rel="stylesheet" href="{{asset('web/css/style.css')}}" media="screen" type="text/css" />
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Varela+Round">
+	<link rel="icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+{% trans_default_domain "FOSUserBundle" %}
+     {% block fos_user_content %}
+        {% if error %}
+        <div><center>{{ error.messageKey|trans(error.messageData, 'security') }}</center></div>
+        {% endif %}
+
+<!--/ vladmaxi top bar -->
+
+	<div id="login">
+		<h2><span class="fontawesome-lock"></span>Авторизация</h2>
+		<form action="{{ path("fos_user_security_check") }}" method="POST">
+			<fieldset>
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+				<p><label for="email">Логин</label></p>
+				<p><input type="text" name="_username" id="username" required autofocus></p>
+
+				<p><label for="password">Пароль:</label></p>
+				<p><input type="password" name="_password" id="password" required autofocus></p> 
+
+				<p><input id ="_submit" name="_submit" type="submit" value="ВОЙТИ"></p>
+			</fieldset>
+		</form>
+	</div>
+                     {% endblock %}
+</body>	
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	    <link rel="shortcut icon" href="/web/img/fico.png" type="image/png">
+        <meta charset="utf-8">
+        <title>ОЛДИН</title>
+		<script  src="{{asset('web/js/dist/max.js')}}"></script>
+    <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
+  <script src="{{asset('web/js/dist/jquery.knob.min.js')}}"></script>
+        <link rel="stylesheet" type="text/css" href="{{asset('web/css/product-style.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('web/css/menu-style.css')}}">
+        <link rel="stylesheet" href="{{asset('web/css/orbit2.css')}}">
+ 
+        <script type="text/javascript" src="{{asset('web/js/jquery.orbit2.js')}}"></script>
+   <link rel="stylesheet" type="text/css" href="{{asset('web/css/sclick/slick.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('web/css/sclick/slick-theme.css')}}">
+    <link href="{{asset('web/css/style-form.css')}}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" language="javascript">
+	function validate(inp) {
+inp.value = inp.value.replace(/[^\d+]*/g, '')
+
+}
+  if({{rull}}==1){
+  
+  $("#mask").fadeIn(500);
+  otvet.style.display="block";
+  }
+  
+  
+  function call() {
+  $a=0;
+
+     if (document.getElementById('name').value==""){
+     document.getElementById('name').style.border = '1px solid red';
+     $a=1;
+	
+     }
+	 else{
+	 document.getElementById('name').style.border = '1px solid green';
+	 }
+     if (document.getElementById('mail').value==""){
+	 document.getElementById('mail').style.border = '1px solid red';
+     $a=1;
+
+    }
+	 else{
+	 document.getElementById('mail').style.border = '1px solid green';
+	 }
+     if (document.getElementById('phone').value==""){
+      document.getElementById('phone').style.border = '1px solid red';
+     $a=1;
+	
+    }
+	 else{
+	 document.getElementById('phone').style.border = '1px solid green';
+	 }
+	if($a==1){
+   return false;
+   }
+ 	  var msg   = $('#formx').serialize();
+        $.ajax({
+          type: 'POST',
+          url: "{{path('fullFitoFixture', { 'id' : id })}}",
+          data: msg,
+          success: function(data) {
+            $('#results').html(data);
+          },
+          error:  function(xhr, str){
+	    alert('Возникла ошибка: ' + xhr.responseCode);
+          }
+        });
+ 
+    }
+	</script>
+  <script type="text/javascript">
+			$(window).load(function() {
+				$('#featured').orbit({
+					'bullets': true,
+					'timer' : true,
+					'animation' : 'horizontal-slide'
+				});
+			});
+		</script>
+		<style type="text/css">
+#mask {
+    background-color:rgba(0,0,0,.3);
+    height:100%;
+    position:fixed;
+    width:100%;
+    top:0;
+    left:0;
+	z-index:5;
+}
+</style>
+
+<div id="mask" onclick="maskfunctuion();" style="display:none;"></div>
+		<script>
+            $(function($) {
+
+                $(".knob").knob({
+                    change : function (value) {
+                        //console.log("change : " + value);
+                    },
+                    release : function (value) {
+                        //console.log(this.$.attr('value'));
+                        console.log("release : " + value);
+                    },
+                    cancel : function () {
+                        console.log("cancel : ", this);
+                    },
+                    /*format : function (value) {
+                        return value + '%';
+                    },*/
+                    draw : function () {
+
+                        // "tron" case
+                        if(this.$.data('skin') == 'tron') {
+
+                            this.cursorExt = 0.3;
+
+                            var a = this.arc(this.cv)  // Arc
+                                , pa                   // Previous arc
+                                , r = 1;
+
+                            this.g.lineWidth = this.lineWidth;
+
+                            if (this.o.displayPrevious) {
+                                pa = this.arc(this.v);
+                                this.g.beginPath();
+                                this.g.strokeStyle = this.pColor;
+                                this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, pa.s, pa.e, pa.d);
+                                this.g.stroke();
+                            }
+
+                            this.g.beginPath();
+                            this.g.strokeStyle = r ? this.o.fgColor : this.fgColor ;
+                            this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, a.s, a.e, a.d);
+                            this.g.stroke();
+
+                            this.g.lineWidth = 2;
+                            this.g.beginPath();
+                            this.g.strokeStyle = this.o.fgColor;
+                            this.g.arc( this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
+                            this.g.stroke();
+
+                            return false;
+                        }
+                    }
+                });
+
+                // Example of infinite knob, iPod click wheel
+                var v, up=0,down=0,i=0
+                    ,$idir = $("div.idir")
+                    ,$ival = $("div.ival")
+                    ,incr = function() { i++; $idir.show().html("+").fadeOut(); $ival.html(i); }
+                    ,decr = function() { i--; $idir.show().html("-").fadeOut(); $ival.html(i); };
+                $("input.infinite").knob(
+                                    {
+                                    min : 0
+                                    , max : 20
+                                    , stopper : false
+                                    , change : function () {
+                                                    if(v > this.cv){
+                                                        if(up){
+                                                            decr();
+                                                            up=0;
+                                                        }else{up=1;down=0;}
+                                                    } else {
+                                                        if(v < this.cv){
+                                                            if(down){
+                                                                incr();
+                                                                down=0;
+                                                            }else{down=1;up=0;}
+                                                        }
+                                                    }
+                                                    v = this.cv;
+                                                }
+                                    });
+            });
+        </script>
+    </head>
+    <body id="results">
+
+        <header>
+          {% include 'ProjectBundle:Default:header2.html.twig' %}
+        </header>
+<div id="zaiavka" class="container" style=" display: none; z-index: 6; " > <br>
+    <div class="user-icon"></div>
+    <div class="pass-icon"></div>
+<div class="login">	
+<form name="login-form" id="formx" method="POST" class="login-form" action="javascript:void(null);" >
+
+    <div class="header">
+		<div id="shapka" style="background-image: url(https://ol1.by/web/img/mule.jpeg); width: 350px; height: 33px; margin-left:-20px;"><h2 style="margin-top:-10px; margin-left:75px; text-shadow: 1px 1px 1px silver,
+               -1px 1px 1px silver;">Заказать звонок</h2> </div>
+	
+		<p><i><ml>Введите ваши данные и мы с вами свяжемся в течение 10 минут. </ml></i></p>
+    </div>
+
+    <div class="content">
+		<input name="name" id="name" type="text" class="input username" placeholder="Имя"   onfocus="this.value=''" />
+		<input name="mail" id="mail" type="text" class="input mail" placeholder="E-mail"  onfocus="this.value=''" style="margin-top:15px" />
+		<input name="phone" id="phone" type="text" onkeyup="validate(this)" class="input password" placeholder="Мобильный"  onfocus="this.value=''" style="margin-top:15px"/>
+		<input name="towarname" type="text" class="input towarname" value="{{fixture.name}}"  style="margin-top:15px" readonly />
+    </div>
+
+    <div class="footer">
+		<input type="submit" name="submit" value="Отправить" class="button"  onclick="yaCounter40415315.reachGoal('push'); call();" style="margin-left:100px; margin-top:15px" />
+	
+    </div>
+
+</form>
+</div>
+</div>
+
+<div id="otvet" class="container" style=" display: none; z-index: 6; margin-top: 50px;" > <br>
+    <div class="user-icon"></div>
+    <div class="pass-icon"></div>
+<div class="login">	
+
+    <div class="content"  style= "text-align:  center;">
+		<lp style= " color: green; text-shadow:  0 0 1em white;">Ваша заявка <br>успешно отправлена!!!</lp>
+    </div>
+
+</div>
+</div>
+        <main>
+            <div class="back-bar">
+                <a href="/fixtures" class="back-to-catalog">Вернуться</a>
+                <p><a href="/">Главная</a> / <a href="/fixtures">Каталог</a> / <a href="#">{{fixture.name}}</a></p>
+            </div>
+            <h1 class="product-name">{{fixture.name}}</h1>
+            <a href="#" class="print">Версия для печати</a>
+			<img class="img_1" src="{{fixture.picture}}" style= " background-size: cover;"></img>
+      <div class="img_2">
+         <div id="featured"  > 
+			<img class="img_3" src="https://ol1.by/web/img/icon/vjFDesk-dCk.jpg" width="190" height="120" alt="Master Chief" style= " position: absolute;" />
+			<img class="img_3" src="https://ol1.by/web/img/icon/fadW_jkqUMQ.jpg" width="190" height="120" alt="Master Chief" style= " position: absolute;"/>
+			<img class="img_3" src="https://ol1.by/web/img/icon/czVmzOelB9w.jpg" width="190" height="120" alt="Master Chief" style= " position: absolute;"/>
+			
+			<img class="img_3" src="https://ol1.by/web/img/icon/LUfrgguskEU.jpg" width="190" height="120" alt="Master Chief" style= " position: absolute;" />
+			<img class="img_3" src="https://ol1.by/web/img/icon/7c2E2zmbtRU.jpg" width="190" height="120" alt="Master Chief" style= " position: absolute;"/>
+   
+		</div> 
+		</div>
+			
+            
+            <ul class="characteristics">
+                <h1>Характеристики:</h1>
+                <li>Мощность(Вт): <strong>{{fixture.power}}</strong></li>
+                <li>Фотонный поток PAR, мкмоль/с: <strong>{{fixture.fotpotok}}</strong></li>
+                <li>Степень защиты светильника, IP: <strong>{{fixture.degreeprotection}}</strong></li>
+				<div id='form3' style='display: none; float:left;margin-left:5px;margin-top:5px;'>
+				<input class="knob" readonly data-min="0" data-max="212" data-angleOffset=-125 data-angleArc=250 data-fgColor="#F79F81"  value="{{fixture.power}}" data-width="70">
+				</div>
+				<div id='form4' style='display: none; float:left; margin-left:5px; margin-top:5px;'>
+				<input class="knob" readonly data-min="0" data-max="284" data-angleOffset=-125 data-angleArc=250 data-fgColor="#ACFA58"  value="{{fixture.fotpotok}}" data-width="70">
+				</div>
+				<div id='form5' style='display: none; float:left;margin-left:5px;margin-top:5px;'>
+				<input class="knob" readonly data-min="0" data-max="67" data-angleOffset=-125 data-angleArc=250 data-fgColor="#8181F7"  value="{{fixture.degreeprotection}}" data-width="70">
+                </div>
+            </ul>
+            <ul class="other-characteristics">
+               <button class="selection-box_reset" onclick='formactive();' >  Заказать звонок</button>
+				
+              <form name="form2"> 
+              <img class="menubtm" src="https://www.ol1.by/web/img/orbit/click.png"  onclick='toggle("form2");' onselectstart="return false" onmousedown="return false" ></img>
+            
+              </form> 
+			  <form name="form1"> 
+
+              </form> 
+              <div id='conten'></div> 
+ 
+              <div id='conten'></div> 
+               
+               <div id='form1' style='display: none; margin-top: -30px; '>
+			   <h1>Дополнительные характеристики:</h1>
+                <li>Коэффициент пульсаций светового потока, %: <strong>{{fixture.koefpulsatsiy}}</strong></li>
+                <li>Марка светодиода OSRAM: <strong>{{fixture.markasvetodioda}}</strong></li>
+                <li>Количество светодиодов, Шт: <strong>{{fixture.kolvosvetodiodov}}</strong></li>
+                <li>Рабочий ресурс светодиодов, Ч:  <strong>{{fixture.rabresurssvetodiodov}}</strong></li>
+                <li>Рабочий ток светодиодов, мА:    <strong>{{fixture.rabtoksvetodiodov}}</strong></li>
+                <li>Световой поток одного светодиода, Лм:   <strong>{{fixture.svetpotokodnogo}}</strong></li>
+                <li>Кривые силы света (КСС):    <strong>{{fixture.kriviesilisveta}}</strong></li>
+                <li>Материал рассеивателя:  <strong>{{fixture.materialrasseivatelya}}</strong></li>
+                <li>Превышение выходного напряжения:    <strong>{{fixture.previshenievihnapryaz}}</strong></li>
+                <li>Напряжение питания, В:  <strong>{{fixture.napryazeniepitaniya}}</strong></li>
+                <li>Количество источников питания:  <strong>{{fixture.kolvoistochnikov}}</strong></li>
+                <li>Материал монтажных плат:    <strong>{{fixture.materialmontajnihplat}}</strong></li>
+                <li>Материал корпуса:   <strong>{{fixture.materialkorpusa}}</strong></li>
+                <li>Способ крепления светильника:   <strong>{{fixture.sposopkrepleniya}}</strong></li>
+                <li>Класс защиты от поражения электрическим током: <strong>{{fixture.klasszashitiottoka}}</strong></li>
+                <li>Температура эксплуатации, °С:   <strong>{{fixture.temperaturaekspluataciy}}</strong></li>
+                <li>Гарантия, мес:  <strong>{{fixture.garantiya}}</strong></li>
+                <li>Производитель источника питания:    <strong>{{fixture.proizvoditelistochnikapitaniya}}</strong></li>
+                <li>Модель: <strong>{{fixture.model}}</strong></li>
+                <li>Грозозащита:    <strong>{{fixture.grozozashita}}</strong></li>
+				<li>Термозащита:    <strong>{{fixture.termozashita}}</strong></li></div> 
+				
+                <div id='form2' style='display: none; margin-top: -30px; '>
+               
+                <h1>Дополнительные характеристики:</h1>
+                <li>Защита от 380, В:   <strong>{{fixture.zashitaot380}}</strong></li>
+                <li>Защита от короткого замыкания:  <strong>{{fixture.zashitaotKorotkogozamika}}</strong></li>
+                <li>Защита от холостого хода:   <strong>{{fixture.ZashitaOtholostogoHoda}}</strong></li>
+                <li>Защита от перенапряжения:   <strong>{{fixture.zashitaOtPerenapryajeniya}}</strong></li>
+                <li>Частота, Гц:    <strong>{{fixture.chastota}}</strong></li>
+                <li>Коэффициент мощности ИП:    <strong>{{fixture.koefpower}}</strong></li>
+                <li>Степень защиты источника питания, IP:   <strong>{{fixture.stepenzahistiIstochnikapitaniya}}</strong></li>
+                <li>Электромагнитная совместимость (радиопомехи):   <strong>{{fixture.elektromagnitnayasovmest}}</strong></li>
+                <li>Гальваническая изоляция:    <strong>{{fixture.galvanicheskIzol}}</strong></li>
+                <li>Пробивное напряжение , кВ:  <strong>{{fixture.probivnoeNapryajenie}}</strong></li>
+                <li>Сопротивление изоляции, Мом:    <strong>{{fixture.soprotivlenieIzolatsii}}</strong></li>
+                <li>Габаритные размеры светильника ( ДхШхВ):    <strong>{{fixture.gabariti}}</strong></li>
+                <li>Масса нетто, Кг:    <strong>{{fixture.massanetto}}</strong></li>
+                <li>Количество светильников в коробке, шт:  <strong>{{fixture.kolvovKorobke}}</strong></li>
+                <li>Габариты коробки, ( ДхШхВ), мм: <strong>{{fixture.gabaritiKorobki}}</strong></li>
+                <li>Объем коробки, м3:  <strong>{{fixture.obiomkorobki}}</strong></li>
+                <li>Масса брутто, Кг:   <strong>{{fixture.massaBrutto}}</strong></li>
+                <li>Вид климатического исполнения:  <strong>{{fixture.vidKlimatichispol}}</strong></li>
+                <li>Класс опасности утилизации отходов: <strong>{{fixture.klassopasnosti}}</strong></li>
+                <li>Площадь теплоотводящей поверхности, Мм2:    <strong>{{fixture.ploshadTeplootvodPoverhn}}</strong></li>
+                <li>Тепловыделение (BTU):   <strong>{{fixture.teplovidelenie}}</strong></li></div>
+				
+
+	
+
+<script type='text/javascript'>  
+
+
+	function maskfunctuion(){
+	$("#zaiavka").hide();
+	$("#mask").hide();
+	$("#otvet").hide();
+	}
+	
+$("#form3").fadeIn(1000);	
+$("#form4").fadeIn(2000);
+$("#form5").fadeIn(3000);	
+ var i=0;
+  function toggle(id) {  
+   
+  i++; 
+  if(i%2==0){
+  $("#form2").fadeIn(500); 
+  $("#form1").hide()
+  }
+  else {
+   $("#form1").fadeIn(500); 
+   $("#form2").hide()
+  }
+  
+  }  
+  toggle("form1"); 
+  
+  var a=0;
+ 
+  function formactive() {  
+  
+  zaiavka.style.display="block";
+  $("#mask").fadeIn(500);
+  
+  }
+  
+ 
+  </script>
+            </ul>
+                <p class="desc">{{fixture.fullDesc|raw}}</p>
+
+           <div class="similar">
+
+               <h1><phq>Похожие товары</phq></h1>
+			   <div class="regular slider">
+                {% for simF in similarFixtures %}
+                    <a href="/fixtures/fito/{{simF.id}}"><div class="similar-item">
+                            <div class="similar-item-bg" 
+                                 style="background: url({{simF.picture}})50% 50% no-repeat; background-size: contain; ">
+								 
+								 </div>
+                            <p>{{simF.name}}</p>
+
+                        </div></a>
+                    {% endfor %}
+					</div>
+
+  <script src="{{asset('web/js/sclick/slick.js')}}"> type="text/javascript" charset="utf-8"></script>  
+  <script type="text/javascript">
+    $(document).on('ready', function() {
+      $(".regular").slick({
+        dots: false,
+        infinite: true,
+        slidesToShow: 5,
+        slidesToScroll: 5
+      });
+      $(".center").slick({
+        dots: false,
+        infinite: true,
+        centerMode: true,
+        slidesToShow: 5,
+        slidesToScroll: 5
+      });
+      $(".variable").slick({
+        dots: false,
+        infinite: true,
+        variableWidth: true
+      });
+    });
+  </script>
+            </div>
+
+        </main>
+
+        <div class="contacts">
+            <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=DSmaTpgudw63pLos2HuLGFOzM_aK42Pm&amp;width=1000&amp;height=380&amp;lang=ru_RU&amp;sourceType=constructor&amp;scroll=true"></script>
+        </div>
+
+        <footer>
+            <p>Общество с дополнительной ответственностью «ОЛДИН»<br>220024, г. Минск, пер. Стебенева, 9а<br>УНП 690031739</p>
+            <img class="footer_logo" src="{{asset('web/img/footer_logo.png')}}">
+            <p class="copyrights">2016 &copy; Все права защищены.</p>
+			   <!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter40415315 = new Ya.Metrika({
+                    id:40415315,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/40415315" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-85711682-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+        </footer>
+<!-- BEGIN JIVOSITE CODE {literal} -->
+<script type='text/javascript'>
+(function(){ var widget_id = 'u0vOpiMMNF';var d=document;var w=window;function l(){
+var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script>
+<!-- {/literal} END JIVOSITE CODE -->
+    </body>
+</html>

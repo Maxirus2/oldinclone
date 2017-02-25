@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: localhost
+    database_port: null
+    database_name: ol1by_db
+    database_user: ol1by_u1
+    database_password: 121212mm
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: 4ce51b07293b4de0bb305a43b06a539d

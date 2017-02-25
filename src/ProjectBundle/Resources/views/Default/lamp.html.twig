@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	   <title>Светодиодные лампы</title>
+	    <meta charset="utf-8">
+	    <link rel="shortcut icon" href="web/img/fico.png" type="image/png">
+        <link rel="stylesheet" type="text/css" href="{{asset('web/css/catalog-style.css')}}">
+        <link rel="stylesheet" href="{{asset('web/css/range.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('web/css/menu-style.css')}}">
+		<script src="{{asset('web/js/spin.min.js')}}"></script>
+        <script src="{{asset('web/js/jquery-1.8.3.js')}}"></script>
+        <script src="{{asset('web/js/jquery-ui.js')}}"></script>
+  <script>
+    $( function() {
+    $( "#slider-range" ).slider({
+      range: true,
+      min: 0,
+      max: 55000,
+	  step: 1000,
+      values: [ 90, 55000 ],
+      slide: function( event, ui ) {
+        $( "#amount" ).val( ui.values[ 0 ]);
+  		$( "#amount1" ).val( ui.values[ 1 ]);
+      }
+    });
+    $( "#amount" ).val(  $( "#slider-range" ).slider( "values", 0 ));
+    $( "#amount1" ).val(  $( "#slider-range" ).slider( "values", 1 ));	
+  } );
+  </script>
+ 
+ </head>
+ 
+ 
+  <body id="result" >
+
+   <header>
+      {% include 'ProjectBundle:Default:header.html.twig' %}
+   </header>
+
+   <main>
+     <div class="selection-box">
+	  <form name="form1" method="POST" id="formx" action="javascript:void(null);">
+	  
+       <div class="selection-box_criterion">
+          <p><strong>Производитель:</strong></p>
+          <p><input type="checkbox" name="a1"><span>ASD</span><br>
+          <input type="checkbox" name="a2"><span>Jazzway</span><br>
+          <input type="checkbox" name="a3"><span>Ecola</span></p>
+       </div>
+	   
+	    <div class="selection-box_criterion">
+          <p><strong>Форма колбы:</strong></p>
+          <p><input type="checkbox" name="a1"><span>Классическая</span><br>
+          <input type="checkbox" name="a2"><span>Свеча</span><br>
+          <input type="checkbox" name="a3"><span>Свеча на ветру</span><br>
+		  <input type="checkbox" name="a4"><span>Шар</span><br>
+		  <input type="checkbox" name="a5"><span>Капсульная</span><br>
+		  <input type="checkbox" name="a6"><span>Рефлектор</span><br>
+          <input type="checkbox" name="a7"><span>MR16</span><br>
+		  <input type="checkbox" name="a8"><span>Линейный</span></p>
+       </div>
+	   
+	   <div class="selection-box_criterion">
+          <p><strong>Цоколь:</strong></p>
+          <p><input type="checkbox" name="a1"><span>E14</span><br>
+          <input type="checkbox" name="a2"><span>E27</span><br>
+          <input type="checkbox" name="a3"><span>G4</span><br>
+		  <input type="checkbox" name="a4"><span>G9</span><br>
+		  <input type="checkbox" name="a5"><span>G13</span><br>
+		  <input type="checkbox" name="a6"><span>GU5.3</span><br>
+          <input type="checkbox" name="a7"><span>GU10</span><br>
+		  <input type="checkbox" name="a8"><span>GX53</span></p>
+       </div>
+	   
+	   
+       <div class="selection-box_criterion">
+          <p><strong>Мощность,Вт:</strong></p>
+          <p><input type="checkbox" name="a1"><span>1-25</span><br>
+          <input type="checkbox" name="a2"><span>26-150</span><br>
+          <input type="checkbox" name="a3"><span>151-180</span><br>
+          <input type="checkbox" name="a4"><span>181-550</span><br></p>
+       </div>
+       <div class="selection-box_criterion">
+          <p><strong>Поверхность:</strong></p>
+          <p><input type="checkbox" name="a1"><span>Прозрачная</span><br>
+          <input type="checkbox" name="a2"><span>Матовая</span><br>
+          <input type="checkbox" name="a3"><span>Зеркальная</span><br>
+          <input type="checkbox" name="a4"><span>Цветная</span></p>
+       </div>
+	    
+	   <div class="selection-box_criterion">
+          <p><strong>Цветовая температура:</strong></p>
+          <p><input type="checkbox" name="a1"><span>Теплый свет(менее 3500К)</span><br>
+          <input type="checkbox" name="a2"><span>Дневной свет(4000-4500К)</span><br>
+          <input type="checkbox" name="a3"><span>Белый свет (4600-6000 К)</span><br>
+          <input type="checkbox" name="a4"><span>Холодный голубой (более 6000К)</span></p>
+       </div>
+	   
+	   
+  <div class="selection-box_slider">
+                    <p><strong>Световой поток, Лм:</strong></p>
+                    <div id="slider-range"></div>
+                    <p>
+                        <input type="text" id="amount" name="amountk" readonly style=" width: 45px; float:left; border:0;  font-weight:bold;">
+                        <label type="text" readonly style="width: 45px; float:left;border:0; margin-left:3px;  font-weight:bold; margin-top:-3px;" >-</label>
+                        <input type="text" id="amount1" name="amountkd" readonly style="width: 45px; float:left; margin-left:-37px; border:0;  font-weight:bold;">
+                      
+				  <button class="selection-box_reset" onclick='pause(); call(); ' style="width: 30px; height: 20px; border-radius: 40px 10px; float:left;margin-top:-2px; ">  >></button>
+					</p>
+                </div>
+				
+				  <button class="selection-box_reset" onclick='pause(); selChk(""); begun(); start(); call(); 'style="margin-top:-3px; ">  Сбросить все</button>
+                    <input type="text" readonly name="index" id="index" value="0" style="visibility:hidden; ">
+                </form>
+	 
+	 </div>
+     <div class="products">
+       <div class="title-bar">
+         <h1>Каталог продукции</h1>
+         <h2>{% if count is defined %}{{count}}{% endif %} товаров</h2>
+       </div>
+	   
+	   <div id="loading" style=" visibility:hidden; "></div>
+	   
+	   {% if result is defined %}
+       {% for lamp in result%}
+       <a href="/fixtures/lamp/{{lamp.id}}"><div class="products_item">
+         <div class="products_item_bg">
+		 <img src="{{lamp.img}}" width="115" height="115"   > </img>
+		 </div>
+		 
+         <h1>{{lamp.name}}</h1>
+         <p>{{lamp.shortDesc|raw}}</p>
+       </div></a>
+	   {% endfor %}
+       {% endif %}
+     <button class="selection-box_reset" id="index_buttum" onclick='pause(); index(); call();'style="width:665px; margin-left:18px; margin-top:-3px; border-radius: 8px;">  Показать еще</button>
+
+
+     </div>
+   </main>
+
+    <footer>
+            <p>Общество с дополнительной ответственностью «ОЛДИН»<br>220024, г. Минск, пер. Стебенева, 9а<br>УНП 690031739</p>
+            <img class="footer_logo" src="web/img/footer_logo.png">
+            <p class="copyrights">2016 &copy; Все права защищены.</p>
+        </footer>
+		
+<script>
+function start() {
+document.getElementById('index').value = 7;
+}
+
+function begun() {
+document.getElementById('amount').value = 0;
+document.getElementById('amount1').value = 100000;
+}
+if(1==1){
+document.getElementById('index_buttum').style.visibility = 'hidden';
+}
+function index() {
+ 
+$a=document.getElementById('index').value; 
+$rez=Number($a)+7; 
+document.getElementById('index').value = $rez;
+
+}
+
+</script>
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter40415315 = new Ya.Metrika({
+                    id:40415315,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/40415315" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+
+    </body>
+		
+<script type="text/javascript" language="javascript">
+ 	
+	function call() {
+ 	  var msg   = $('#formx').serialize();
+        $.ajax({
+          type: 'POST',
+          url: "{{path('lamp')}}",
+          data: msg,
+          success: function(data) {
+            $('#result').html(data);
+          },
+       
+        });
+ 
+    }
+	
+	
+	
+	
+	
+	
+	
+	window.onload = function call() {
+ 	  var msg   = $('#formx').serialize();
+        $.ajax({
+          type: 'POST',
+          url: "{{path('findaction')}}",
+          data: msg,
+          success: function(data) {
+            $('#results').html(data);
+          },
+       
+        });
+ 
+    }
+	function selChk(v) {
+	 for (var i = 0; i < (document.form1.power.length); i++) {
+  document.form1.power[i].checked = v;
+ }
+	for (var i = 0; i < (document.form1.ip.length); i++) {
+  document.form1.ip[i].checked = v;
+ }
+	document.form1.prom.checked = "";
+	document.form1.office.checked = "";
+	document.form1.torg.checked = "";
+	document.form1.street.checked = "";
+	document.form1.fito.checked = "";
+	document.form1.azs.checked = "";
+	
+	for (var i = 0; i < (document.form1.naznachenie.length); i++) {
+  document.form1.naznachenie[i].checked = v;
+ }
+	}
+	
+	function pause() {
+	document.getElementById('loading').style.visibility =  'visible';
+	}
+
+	
+</script>
+
+ <script>
+   var opts = {
+    lines: 13, // Число линий для рисования
+    length: 0, // Длина каждой линии
+    width: 10, // Толщина линии
+    radius: 30, // Радиус внутреннего круга
+    corners: 1, // Скругление углов (0..1)
+    rotate: 0, // Смещение вращения
+    direction: 1, // 1: по часовой стрелке, -1: против часовой стрелки
+    color: '#000', // #rgb или #rrggbb или массив цветов
+    speed: 2.2, // Кругов в секунду
+    trail: 17, // Послесвечение
+    shadow: true, // Тень(true - да; false - нет)
+    hwaccel: false, // Аппаратное ускорение
+    className: 'spinner', // CSS класс
+    zIndex: 2e9, // z-index (по-умолчанию 2000000000)
+    top: '330px', // Положение сверху относительно родителя
+    left: '50%'
+   };
+   var target = document.getElementById('loading');
+   var spinner = new Spinner(opts).spin(target);
+  </script>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-85711682-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</html>
