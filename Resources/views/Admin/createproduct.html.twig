@@ -1,0 +1,17 @@
+{% extends "ProjectBundle:Admin:layout.html.twig" %}
+
+{% block containerUsers %}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h2 class="sub-header">Добавление товара</h2> 
+        <p>Выберите какой вы товар хотите добавить:</p>
+        <a href="/admin/createproduct/promfixture">Промышленный светильник</a><br>
+         <a href="/admin/createproduct/officefixture">Офисный светильник</a><br>
+          <a href="/admin/createproduct/torgfixture">Торговый светильник</a><br>
+           <a href="/admin/createproduct/streetfixture">Уличный светильник</a><br>
+            <a href="/admin/createproduct/fitofixture">Фито светильник</a><br>
+             <a href="/admin/createproduct/azsfixture">АЗС светильник</a><br>
+			   <a href="/admin/createproduct/projectfixture">Прошектор</a><br>
+        <a href="/createproduct/lamp">Лампу</a><br>
+        
+    </div>
+{% endblock %}

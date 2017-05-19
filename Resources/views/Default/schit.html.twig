@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <link rel="shortcut icon" href="web/img/fico.png" type="image/png">
+  <meta charset="utf-8">
+  <title>ОЛДИН</title>
+  <link rel="stylesheet" type="text/css" href="{{asset('web/css/catalog-style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('web/css/menu-style.css')}}">
+	<link rel="stylesheet" href="{{asset('web/css/range.css')}}">
+ <script src="{{asset('web/js/jquery-1.8.3.js')}}"></script>
+  <script src="/ui/jqueryui.custom.js"></script>
+
+  <script src="{{asset('web/js/jquery-ui.js')}}"></script>
+  <script>
+    $( function() {
+    $( "#slider-range" ).slider({
+      range: true,
+      min: 0,
+      max: 55000,
+	  step: 1000,
+      values: [ 90, 55000 ],
+      slide: function( event, ui ) {
+        $( "#amount" ).val( ui.values[ 0 ]);
+  		$( "#amount1" ).val( ui.values[ 1 ]);
+      }
+    });
+    $( "#amount" ).val(  $( "#slider-range" ).slider( "values", 0 ));
+    $( "#amount1" ).val(  $( "#slider-range" ).slider( "values", 1 ));	
+  } );
+  </script>
+ 
+ </head>
+ <body>
+
+   <header>
+     {% include 'ProjectBundle:Default:header.html.twig' %}
+   </header>
+
+   <main style="background-color:E3F6FF; height: 1050px;">
+  
+	 <img src="web/img/schit.png"  >  
+    <div style="position:absolute; z-index: 3; margin-top: -340px; margin-left: 240px;"> <texti  style="text-align: center;"><b> <pp style="color: red;  margin-left: 80px; font-size: 21pt;">Уважаемые посетители!</pp><p>
+Наш каталог <a href="https://ol1.by/schit"> Электрощитовое оборудование </a>сейчас находится в <br>стадии модернизации. <p>
+По вопросам ассортиментного перечня продукции и наличия <br>ее на складе,  пожалуйста, обращайтесь через форму<br> обратной связи или звоните нашим специалистам.<p>
+Тел. +375 (25) 708-13-13 <br>
+Тел. +375 (29) 708-13-13 <br>
+Тел. +375 (44) 708-13-13<br>
+Т/Ф. +375 (17) 277-36-26 </b></texti></div>
+ <div class="line" style=" border-top: 1px dashed #000; 
+ height: 18px; 
+ background: url(images/scissors.png) no-repeat 10px -18px; 
+ margin-left:10px; 
+  margin-right:10px; 
+ "></div>
+ <div style=" z-index: 3;  margin-left: 45px;"><b> <texti  style="text-align: center; font-size: 10pt;">
+ <lio style="margin-left:210px;">   <a href="https://ol1.by/contacts"> Купить ШВУ шкаф ввода -учета</a>  у производителя в Минске<lio style="color:red"> без переплат?</lio></lio> <br>
+ <lio style="margin-left:140px;"> 	 В этом вам поможет компания <i>«ОЛДИН»</i>, имея большой опыт и сотрудничая с ПО<a href="http://elkomp.by/"> «ЭЛКОМП»</lio> </a> <br>
+  <lio style="margin-left:60px;"> 	 мы можем предложить одну из самых низких цен на электрощитовую продукцию в Беларуси собственного производства.</lio> <br><br>
+Всегда можем предложить Электрощитовое оборудование в Минске в наличии на складе или <lio style="color:red">с быстрым сроком изготовления</lio>:<br>
+&#9679;	Пункты распределительные ПР11(ПР85) ТУ РБ 101225013.004-2002<br>
+&#9679;	Щитки освещения (ЩО, ОЩВ, ЯОУ) ТУ РБ 101225013.001-2001<br>
+&#9679;	Шкафы распределительные ШР11 ТУ РБ 101225013.002-2001<br>
+&#9679;	Шкафы управления КНС серии Ш5940, ШДН<br>
+&#9679;	Шкаф ШРУ-3<br>
+&#9679;	Шкафы ввода-учета (под ваш проект - на стройплощадку, границу участка и др.)<br>
+&#9679;	Посты управления кнопочные ПКУ15ТУ РБ 10125013.006-2002<br>
+&#9679;	Щиты этажные (ЩЭ), квартирные (ЩК)<br>
+&#9679;	Ящики управления Я5000 ТУ РБ 101225013.003-2002<br>
+&#9679;	Устройства водно-распределительные ВРУ1ТУ РБ 101225013.005-2002<br>
+&#9679;	Ящики с рубильниками ЯРВ (ЯРП) 100, 250, 400<br>
+&#9679;	КИП и А типовые и по индивидуальным проектам<br>
+Изготовление нестандартных электротехнических шкафов, оболочек электротехнических шкафов.
+</b></texti></div>
+   </main>
+
+   <footer>
+     <p>Общество с дополнительной ответственностью «ОЛДИН»<br>220024, г. Минск, пер. Стебенева, 9а<br>УНП 690031739</p>
+     <img class="footer_logo" src="web/img/footer_logo.png">
+     <p class="copyrights">2016 &copy; Все права защищены.</p>
+	  	 <!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter40415315 = new Ya.Metrika({
+                    id:40415315,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/40415315" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+   </footer>
+<!-- BEGIN JIVOSITE CODE {literal} -->
+<script type='text/javascript'>
+(function(){ var widget_id = 'u0vOpiMMNF';var d=document;var w=window;function l(){
+var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script>
+<!-- {/literal} END JIVOSITE CODE -->
+ </body>
+</html>

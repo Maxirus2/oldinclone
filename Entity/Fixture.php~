@@ -1,0 +1,190 @@
+<?php
+
+namespace ProjectBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Fixture
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class Fixture
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=500)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="shortDesc", type="string", length=320)
+     */
+    private $shortDesc;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fullDesc", type="string", length=6000)
+     */
+    private $fullDesc;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="picture", type="string", length=1300)
+     */
+    private $picture;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdAt", type="datetime")
+     */
+    private $createdAt;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Fixture
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set shortDesc
+     *
+     * @param string $shortDesc
+     *
+     * @return Fixture
+     */
+    public function setShortDesc($shortDesc)
+    {
+        $this->shortDesc = $shortDesc;
+
+        return $this;
+    }
+
+    /**
+     * Get shortDesc
+     *
+     * @return string
+     */
+    public function getShortDesc()
+    {
+        return $this->shortDesc;
+    }
+
+    /**
+     * Set fullDesc
+     *
+     * @param string $fullDesc
+     *
+     * @return Fixture
+     */
+    public function setFullDesc($fullDesc)
+    {
+        $this->fullDesc = $fullDesc;
+
+        return $this;
+    }
+
+    /**
+     * Get fullDesc
+     *
+     * @return string
+     */
+    public function getFullDesc()
+    {
+        return $this->fullDesc;
+    }
+
+    /**
+     * Set picture
+     *
+     * @param string $picture
+     *
+     * @return Fixture
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return string
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Fixture
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+}
+

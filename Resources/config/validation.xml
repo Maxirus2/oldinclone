@@ -1,0 +1,100 @@
+<?xml version="1.0" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+        http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="ProjectBundle\Entity\User">
+
+        <constraint name="Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity">
+                <option name="fields">
+                    <value>email</value>
+                    <value>username</value>
+                </option>
+  
+                <option name="message">This port is already in use on that host.</option>
+                  <option name="groups">
+                    <value>AppRegistration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+            
+        <property name="username">
+            <constraint name="NotBlank">
+                <option name="message">Логин не может быть пустым</option>
+                <option name="groups">
+                    <value>AppRegistration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+            
+            <constraint name="Regex">
+                <option name="pattern">/^[a-zA-Z0-9]+$/</option>
+                <option name="groups"><value>AppRegistration></value></option>
+            </constraint>
+     
+            <constraint name="Length">
+                <option name="min">5</option>
+                <option name="minMessage">Логин должен содержать минимум 5 символов</option>
+                <option name="max">15</option>
+                <option name="maxMessage">Длина логина не должна превышать 15 символов</option>
+                <option name="groups">
+                    <value>AppRegistration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+        </property>
+
+        <property name="email">
+            <constraint name="NotBlank">
+                <option name="message">Полe email не может быть пустым</option>
+                <option name="groups">
+                    <value>AppRegistration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">5</option>
+                <option name="minMessage">Недопустимая длина email</option>
+                <option name="max">38</option>
+                <option name="maxMessage">Недопустимая длина email</option>
+                <option name="groups">
+                    <value>AppRegistration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+            <constraint name="Email">
+                <option name="message">Неправильный email</option>
+                <option name="groups">
+                    <value>AppRegistration</value>
+                    <value>Profile</value>
+                </option>
+            </constraint>
+        </property>
+
+        <property name="plainPassword">
+            <constraint name="NotBlank">
+                <option name="message">Пароль не может быть пустым</option>
+                <option name="groups">
+                    <value>AppRegistration</value>
+                    <value>ResetPassword</value>
+                    <value>ChangePassword</value>
+                </option>
+            </constraint>
+            <constraint name="Regex">
+                <option name="pattern">/^[a-zA-Z0-9]+$/</option>
+                <option name="groups"><value>AppRegistration></value></option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="max">4096</option>
+                <option name="minMessage">Пароль слишком короткий</option>
+                <option name="groups">
+                    <value>AppRegistration</value>
+
+                </option>
+            </constraint>
+        </property>
+    </class>
+    
+</constraint-mapping>

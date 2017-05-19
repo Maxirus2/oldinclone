@@ -1,0 +1,31 @@
+{% extends "ProjectBundle:Admin:layout.html.twig" %}
+
+{% block containerUsers %}
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                   <h2 class="sub-header">Список статей</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>Имя статьи</th>
+                                    <th>Функции</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for articles in article %}
+                                <tr>
+                                    <td>{{articles.id}}</td>
+                                    <td>{{articles.name}}</td>
+                                    <td><a href="/admin/articleedit/{{articles.id}}"><input type="button" value="Редактировать"></a>
+                                        <a href="/admin/deletearticle/{{articles.id}}">
+                                            <input type="button" value ="Удалить">
+                                        </a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+{% endblock %}

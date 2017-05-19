@@ -1,0 +1,81 @@
+{% extends "ProjectBundle:Admin:layout.html.twig" %}
+
+{% block containerUsers %}
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                   <h2 class="sub-header">Список товаров</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Тип</th>
+                                    <th>Имя</th>
+                                    <th>Функции</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for fixture in promfixtures %}
+                                <tr>
+                                    <td>{{fixture.appointmentTwo}}</td>
+                                    <td>{{fixture.name}}</td>
+                                    <td><a href="/admin/editpfix/{{fixture.id}}"><input type="button" value="Редактировать"></a>
+                                        <a href="/admin/delpromf/{{fixture.id}}">
+                                            <input type="button" value ="Удалить">
+                                        </a></td>
+                                </tr>
+                                {% endfor %}
+                                {% for fixture in officefixtures %}
+                                <tr>
+                                    <td>{{fixture.appointmentTwo}}</td>
+                                    <td>{{fixture.name}}</td>
+                                    <td><a href="/admin/editofix/{{fixture.id}}"><input type="button" value="Редактировать"></a>
+                                        <a href="/admin/delofficef/{{fixture.id}}">
+                                            <input type="button" value ="Удалить">
+                                        </a></td>
+                                </tr>
+                                {% endfor %}
+                                {% for fixture in torgfixtures %}
+                                <tr>
+                                    <td>{{fixture.appointmentTwo}}</td>
+                                    <td>{{fixture.name}}</td>
+                                    <td><a href="/admin/edittfix/{{fixture.id}}"><input type="button" value="Редактировать"></a>
+                                        <a href="/admin/deltorgf/{{fixture.id}}">
+                                            <input type="button" value ="Удалить">
+                                        </a></td>
+                                </tr>
+                                {% endfor %}
+                                {% for fixture in streetfixtures %}
+                                <tr>
+                                    <td>{{fixture.appointmentTwo}}</td>
+                                    <td>{{fixture.name}}</td>
+                                    <td><a href="/admin/editsfix/{{fixture.id}}"><input type="button" value="Редактировать"></a>
+                                        <a href="/admin/delstreetf/{{fixture.id}}">
+                                            <input type="button" value ="Удалить">
+                                        </a></td>
+                                </tr>
+                                {% endfor %}
+                                {% for fixture in fitofixtures %}
+                                <tr>
+                                    <td>{{fixture.appointmentTwo}}</td>
+                                    <td>{{fixture.name}}</td>
+                                    <td><a href="/admin/editffix/{{fixture.id}}"><input type="button" value="Редактировать"></a>
+                                        <a href="/admin/delfitof/{{fixture.id}}">
+                                            <input type="button" value ="Удалить">
+                                        </a></td>
+                                </tr>
+                                {% endfor %}
+                                {% for fixture in azsfixtures %}
+                                <tr>
+                                    <td>{{fixture.appointmentTwo}}</td>
+                                    <td>{{fixture.name}}</td>
+                                    <td><a href="/admin/editafix/{{fixture.id}}"><input type="button" value="Редактировать"></a>
+                                        <a href="/admin/delazsf/{{fixture.id}}">
+                                            <input type="button" value ="Удалить">
+                                        </a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+{% endblock %}
